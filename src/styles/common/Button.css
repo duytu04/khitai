@@ -1,0 +1,15 @@
+.button {
+    padding: 0.5rem 1rem; /* Khoảng cách trong */
+    font-size: 1rem; /* Kích thước chữ */
+    background-color: #ff9900; /* Màu nền cam */
+    color: white; /* Màu chữ trắng */
+    border: none; /* Xóa viền */
+    border-radius: 4px; /* Bo góc */
+    cursor: pointer; /* Con trỏ tay khi hover */
+  }
+  
+  /* Khi nút bị disabled */
+  .button:disabled {
+    background-color: #ccc; /* Màu xám khi bị vô hiệu */
+    cursor: not-allowed; /* Con trỏ không cho phép */
+  }

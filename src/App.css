@@ -1,0 +1,57 @@
+/* Container chính của ứng dụng */
+.App {
+  text-align: center; /* Căn giữa văn bản trong toàn bộ ứng dụng */
+}
+
+/* Logo của ứng dụng */
+.App-logo {
+  height: 40vmin; /* Chiều cao logo dựa trên đơn vị vmin (phù hợp với kích thước màn hình) */
+  pointer-events: none; /* Không cho phép tương tác với logo */
+}
+
+/* Media query cho thiết bị không giảm chuyển động */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear; /* Logo xoay vô hạn trong 20 giây */
+  }
+}
+
+/* Phần tiêu đề chính của ứng dụng */
+.App-header {
+  background-color: #282c34; /* Màu nền tối */
+  min-height: 100vh; /* Chiều cao tối thiểu bằng toàn màn hình */
+  display: flex; /* Sử dụng flex để sắp xếp nội dung */
+  flex-direction: column; /* Xếp nội dung theo cột */
+  align-items: center; /* Căn giữa theo chiều ngang */
+  justify-content: center; /* Căn giữa theo chiều dọc */
+  font-size: calc(10px + 2vmin); /* Kích thước chữ động dựa trên màn hình */
+  color: white; /* Màu chữ trắng */
+}
+
+/* Liên kết trong ứng dụng */
+.App-link {
+  color: #61dafb; /* Màu xanh đặc trưng của React */
+}
+
+/* Animation để xoay logo */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg); /* Bắt đầu từ góc 0 độ */
+  }
+  to {
+    transform: rotate(360deg); /* Kết thúc ở góc 360 độ (xoay 1 vòng) */
+  }
+}
+
+/* Điều chỉnh bổ sung để tích hợp với Navbar và Footer */
+.App {
+  display: flex; /* Sử dụng flex để sắp xếp Navbar, main, Footer */
+  flex-direction: column; /* Xếp theo chiều dọc */
+  min-height: 100vh; /* Đảm bảo chiều cao tối thiểu bằng màn hình */
+}
+
+/* Phần nội dung chính giữa Navbar và Footer */
+.app-main {
+  flex: 1; /* Chiếm toàn bộ không gian còn lại */
+  padding: 1rem; /* Khoảng cách trong */
+}

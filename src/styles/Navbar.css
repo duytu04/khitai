@@ -1,0 +1,53 @@
+/* Thanh điều hướng chính */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Căn đều giữa logo và menu */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding: 1rem 2rem; /* Khoảng cách trong */
+    background-color: #333; /* Màu nền tối */
+    color: white; /* Màu chữ trắng */
+  }
+  
+  /* Phần chứa logo */
+  .navbar-logo {
+    display: flex;
+    align-items: center; /* Căn giữa logo theo chiều dọc */
+  }
+  
+  /* Hình ảnh logo */
+  .logo {
+    height: 40px; /* Chiều cao logo */
+    width: auto; /* Giữ tỷ lệ ảnh */
+  }
+  
+  /* Danh sách menu */
+  .navbar-menu {
+    list-style: none; /* Xóa dấu chấm của danh sách */
+    display: flex; /* Hiển thị các mục theo hàng ngang */
+    gap: 2rem; /* Khoảng cách giữa các mục */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Mỗi mục trong menu */
+  .navbar-item {
+    font-size: 1.1rem; /* Kích thước chữ */
+  }
+  
+  /* Liên kết trong menu */
+  .navbar-item a {
+    text-decoration: none; /* Xóa gạch chân */
+    color: white; /* Màu chữ trắng */
+    transition: color 0.3s; /* Hiệu ứng chuyển màu mượt mà */
+  }
+  
+  /* Khi di chuột qua liên kết */
+  .navbar-item a:hover {
+    color: #ddd; /* Màu xám nhạt khi hover */
+  }
+  
+  /* Khi liên kết đang active */
+  .navbar-item a.active {
+    color: #ff9900; /* Màu cam khi trang được chọn */
+    font-weight: bold; /* Chữ đậm */
+  }

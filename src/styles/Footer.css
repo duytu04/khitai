@@ -1,0 +1,61 @@
+/* Footer chính */
+.footer {
+    background-color: #222; /* Màu nền tối */
+    color: white; /* Màu chữ trắng */
+    padding: 2rem 2rem 1rem; /* Khoảng cách trong */
+    text-align: center; /* Căn giữa văn bản */
+  }
+  
+  /* Nội dung chính của footer */
+  .footer-content {
+    display: flex; /* Hiển thị các phần theo hàng ngang */
+    justify-content: space-around; /* Căn đều các phần */
+    flex-wrap: wrap; /* Cho phép xuống dòng nếu màn hình nhỏ */
+    gap: 1rem; /* Khoảng cách giữa các phần */
+    max-width: 1200px; /* Chiều rộng tối đa */
+    margin: 0 auto; /* Căn giữa */
+  }
+  
+  /* Mỗi phần trong footer */
+  .footer-section {
+    flex: 1; /* Chiếm đều không gian */
+    min-width: 200px; /* Chiều rộng tối thiểu */
+  }
+  
+  /* Tiêu đề của mỗi phần */
+  .footer-section h3 {
+    font-size: 1.2rem; /* Kích thước chữ tiêu đề */
+    margin-bottom: 0.5rem; /* Khoảng cách dưới */
+  }
+  
+  /* Đoạn văn trong mỗi phần */
+  .footer-section p {
+    font-size: 0.9rem; /* Kích thước chữ */
+    margin: 0.3rem 0; /* Khoảng cách trên dưới */
+  }
+  
+  /* Phần liên kết mạng xã hội */
+  .footer-social {
+    display: flex; /* Hiển thị liên kết theo hàng ngang */
+    gap: 1rem; /* Khoảng cách giữa các liên kết */
+    justify-content: center; /* Căn giữa */
+  }
+  
+  /* Liên kết mạng xã hội */
+  .footer-social a {
+    color: #ff9900; /* Màu cam */
+    text-decoration: none; /* Xóa gạch chân */
+  }
+  
+  /* Khi di chuột qua liên kết */
+  .footer-social a:hover {
+    text-decoration: underline; /* Thêm gạch chân khi hover */
+  }
+  
+  /* Phần dưới cùng của footer */
+  .footer-bottom {
+    margin-top: 1rem; /* Khoảng cách trên */
+    border-top: 1px solid #444; /* Đường viền trên */
+    padding-top: 1rem; /* Khoảng cách trong */
+    font-size: 0.8rem; /* Kích thước chữ nhỏ */
+  }

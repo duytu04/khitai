@@ -1,0 +1,105 @@
+Dưới đây là danh sách các loại khí tài mà bạn có thể tham khảo. Danh sách này bao gồm các loại khí tài quân sự và vũ khí, được sử dụng trong nhiều lĩnh vực khác nhau:
+
+### 1. **Khí tài hải quân**
+   - **Tàu chiến** (Destroyers, Frigates, Submarines)
+   - **Khu trục hạm**
+   - **Tàu sân bay**
+   - **Tàu ngầm**
+   - **Vũ khí chống tàu** (Tên lửa chống tàu)
+   - **Hệ thống pháo hạm**
+
+### 2. **Khí tài không quân**
+   - **Máy bay chiến đấu** (F-16, Su-30, F-22, ...)
+   - **Máy bay vận tải**
+   - **Trực thăng chiến đấu** (Apache, Mi-24)
+   - **Tên lửa không đối không**
+   - **Hệ thống radar cảnh báo sớm**
+   - **Khí tài phòng không** (Hệ thống tên lửa phòng không, súng phòng không)
+
+### 3. **Khí tài mặt đất**
+   - **Xe tăng** (T-90, M1 Abrams)
+   - **Xe bọc thép** (MRAP, Humvee)
+   - **Pháo tự hành** (Pháo 155mm, Pháo 105mm)
+   - **Súng trường tự động** (AK-47, M16)
+   - **Đạn pháo, đạn tên lửa** (Grad, Katyusha)
+   - **Súng ngắn, súng trường, súng bắn tỉa**
+   - **Hệ thống tên lửa đất đối không**
+
+### 4. **Khí tài hóa học và sinh học**
+   - **Vũ khí hóa học** (Chất độc VX, Sarin)
+   - **Vũ khí sinh học** (Vi khuẩn, virus)
+   - **Hệ thống phòng vệ hóa học và sinh học**
+
+### 5. **Khí tài chiến tranh điện tử**
+   - **Hệ thống jamming (gây nhiễu sóng)**
+   - **Radar tác chiến điện tử**
+   - **Phòng thủ tác chiến điện tử**
+
+### 6. **Khí tài vũ khí hạt nhân**
+   - **Tên lửa đạn đạo liên lục địa (ICBM)**
+   - **Bom hạt nhân**
+   - **Tên lửa mang đầu đạn hạt nhân**
+
+7. Khí tài chiến tranh đặc biệt
+Dụng cụ phá hoại (Cưa, máy cắt, bom nổ)
+
+Vũ khí tàng hình (Máy bay tàng hình, tàu tàng hình)
+
+Khí tài thông tin (Hệ thống truyền tin quân sự, máy thu tín hiệu)
+
+Khí tài đặc nhiệm (Vũ khí của lính đặc nhiệm như dao găm, súng ngắn)
+
+8. Khí tài chiến tranh mạng
+Hệ thống tấn công mạng (Tấn công từ xa qua mạng Internet)
+
+Phần mềm độc hại quân sự (Virus, Trojan, Malware)
+
+Phần mềm phòng thủ mạng (Hệ thống bảo mật mạng, phòng ngừa tấn công mạng)
+
+9. Khí tài quân sự cỡ nhỏ
+Súng bắn tỉa (M24, Barrett M82)
+
+Súng trường (M1 Garand, AK-47, FN FAL)
+
+Súng ngắn (Colt 1911, Glock 17)
+
+Súng máy hạng nhẹ (M249 SAW, PKM)
+
+Súng phóng lựu (M203, RPG)
+
+10. Khí tài chống tăng
+Tên lửa chống tăng (ATGM như Javelin, Kornet, TOW)
+
+Lựu đạn chống tăng
+
+Súng chống tăng (RPG, Carl Gustav)
+
+11. Khí tài không gian
+Vệ tinh quân sự (Vệ tinh quan sát, vệ tinh thông tin)
+
+Tên lửa phóng vệ tinh (Tên lửa đẩy như Falcon 9)
+
+Hệ thống radar không gian
+
+12. Khí tài hỗ trợ chiến đấu
+Dụng cụ trinh sát (Máy bay không người lái - UAV, UAV quân sự)
+
+Xe cứu thương quân sự
+
+Khí tài cấp cứu chiến trường
+
+Hệ thống cảnh báo sớm (Radar cảnh báo, hệ thống cảm biến)
+
+13. Khí tài tác chiến đặc biệt
+Lựu đạn hơi cay, lựu đạn xịt hơi độc
+
+Máy bắn đá, máy bắn đá tự động (sử dụng trong các cuộc chiến cổ đại hoặc chiến tranh hiện đại để phá hoại công sự)
+
+Khí tài đột kích vào căn cứ (ví dụ: pháo tự động, cối 120mm)
+
+14. Khí tài đặc biệt không người lái
+Drone chiến đấu (Khí tài không người lái sử dụng để tấn công hoặc thu thập thông tin)
+
+Drone vận tải (Vận chuyển hàng hóa, vũ khí, đạn dược)
+
+Drone quan sát (Làm nhiệm vụ do thám)

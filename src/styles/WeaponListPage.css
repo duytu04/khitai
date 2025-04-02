@@ -1,0 +1,114 @@
+/* Container chính của trang danh sách vũ khí */
+.weapon-list-page {
+  padding: 2rem; /* Padding xung quanh trang */
+  max-width: 1200px; /* Chiều rộng tối đa */
+  margin: 0 auto; /* Căn giữa trang */
+}
+
+/* Tiêu đề của trang */
+.weapon-list-title {
+  font-size: 2rem; /* Kích thước chữ */
+  text-align: center; /* Căn giữa tiêu đề */
+  margin-bottom: 2rem; /* Khoảng cách phía dưới */
+  color: #333; /* Màu chữ */
+}
+
+/* Navbar con dùng để chọn loại vũ khí */
+.sub-navbar {
+  display: flex; /* Hiển thị theo dạng flexbox */
+  gap: 1rem; /* Khoảng cách giữa các item */
+  justify-content: center; /* Căn giữa navbar */
+  margin-bottom: 2rem; /* Khoảng cách phía dưới */
+}
+
+/* Các item trong navbar con */
+.sub-navbar-item {
+  padding: 0.5rem 1rem; /* Padding cho item */
+  font-size: 1rem; /* Kích thước chữ */
+  background-color: #f0f0f0; /* Màu nền */
+  border: none; /* Không border */
+  border-radius: 4px; /* Bo tròn góc */
+  cursor: pointer; /* Con trỏ khi hover */
+  transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền khi hover */
+}
+
+/* Khi item đang được chọn (active) */
+.sub-navbar-item.active {
+  background-color: #ff9900; /* Màu nền khi active */
+  color: white; /* Màu chữ khi active */
+}
+
+/* Khi hover vào item */
+.sub-navbar-item:hover {
+  background-color: #ddd; /* Màu nền khi hover */
+}
+
+/* Phần hiển thị danh sách vũ khí và thanh lọc bên trái */
+.weapon-list-content {
+  display: flex; /* Hiển thị theo dạng flexbox */
+  gap: 2rem; /* Khoảng cách giữa các phần tử */
+  flex-wrap: wrap; /* Đảm bảo các phần tử không bị vượt quá chiều rộng */
+  flex-direction: row-reverse; /* Đảo chiều flex, làm thanh lọc nằm bên trái */
+}
+
+/* Danh sách vũ khí */
+.weapon-list {
+  flex: 3; /* Chiếm 3 phần của không gian */
+  display: grid; /* Hiển thị theo dạng grid */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Cột tự động */
+  gap: 1.5rem; /* Khoảng cách giữa các item */
+}
+
+/* Sidebar lọc ở bên trái */
+.filter-sidebar {
+  flex: 1; /* Chiếm 1 phần của không gian */
+  min-width: 200px; /* Chiều rộng tối thiểu */
+  padding: 1rem; /* Padding xung quanh */
+  background-color: #f9f9f9; /* Màu nền */
+  border-radius: 8px; /* Bo tròn góc */
+}
+
+/* Tiêu đề của phần lọc */
+.filter-title {
+  font-size: 1.2rem; /* Kích thước chữ */
+  margin-bottom: 1rem; /* Khoảng cách phía dưới */
+  color: #333; /* Màu chữ */
+}
+
+/* Phần tùy chọn lọc */
+.filter-options {
+  display: flex; /* Hiển thị theo dạng flexbox */
+  flex-direction: column; /* Sắp xếp theo chiều dọc */
+  gap: 1rem; /* Khoảng cách giữa các item */
+}
+
+/* Mỗi tùy chọn lọc */
+.filter-option {
+  display: flex; /* Hiển thị theo dạng flexbox */
+  flex-direction: column; /* Sắp xếp theo chiều dọc */
+  font-size: 1rem; /* Kích thước chữ */
+}
+
+/* Style cho select trong mỗi tùy chọn lọc */
+.filter-option select {
+  padding: 0.5rem; /* Padding cho select */
+  font-size: 1rem; /* Kích thước chữ */
+  border: 1px solid #ddd; /* Viền */
+  border-radius: 4px; /* Bo tròn góc */
+  margin-top: 0.5rem; /* Khoảng cách phía trên */
+}
+
+/* Phân trang */
+.pagination {
+  display: flex; /* Hiển thị theo dạng flexbox */
+  justify-content: center; /* Căn giữa phân trang */
+  align-items: center; /* Căn giữa các phần tử trong phân trang */
+  gap: 1rem; /* Khoảng cách giữa các phần tử */
+  margin-top: 2rem; /* Khoảng cách phía trên */
+}
+
+/* Thông tin phân trang */
+.pagination-info {
+  font-size: 1rem; /* Kích thước chữ */
+  color: #666; /* Màu chữ */
+}
