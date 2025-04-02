@@ -1,14 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'; // Nhập NavLink để điều hướng
 import '../styles/Navbar.css'; // Nhập CSS từ thư mục styles
-
+import logo from '../assets/images/Logo_QĐNDVN.png';
 const Navbar = () => {
   return (
     <nav className="navbar">
       {/* Phần logo bên trái */}
       <div className="navbar-logo">
-        <img src="/assets/images/logo.png" alt="Logo" className="logo" />
+        <img src={logo} alt="Logo" className="logo" />
       </div>
+         
       {/* Danh sách các mục menu */}
       <ul className="navbar-menu">
         {/* Mục Home */}

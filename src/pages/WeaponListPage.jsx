@@ -59,7 +59,7 @@ const WeaponListPage = () => {
   return (
     <div className="weapon-list-page">
       {/* Tiêu đề trang */}
-      <h1 className="weapon-list-title">Danh sách khí tài</h1>
+      <h1 className="weapon-list-title">...</h1>
 
       {/* Thanh navbar phụ để chọn danh mục */}
       <nav className="sub-navbar">
