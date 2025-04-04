@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import { weapons } from '../data/weapons'; // Nhập danh sách khí tài từ /data/weapons.js
-import Card from '../components/Card'; // Nhập component Card
-import Button from '../components/common/Button'; // Nhập component Button
 import usePagination from '../hooks/usePagination'; // Nhập hook phân trang
-import '../styles/WeaponListPage.css'; // Nhập CSS cho trang
+import {
+  Box,
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Paper,
+} from '@mui/material'; // Nhập các thành phần từ MUI
 
 const WeaponListPage = () => {
   // State để lưu danh mục được chọn từ sub-navbar
@@ -57,125 +68,182 @@ const WeaponListPage = () => {
   const resetFilters = () => setFilters({});
 
   return (
-    <div className="weapon-list-page">
+    <Box sx={{ padding: 3 }}>
       {/* Tiêu đề trang */}
-      <h1 className="weapon-list-title">...</h1>
+      <Typography variant="h4" component="h1" gutterBottom align="center">
+        Danh sách khí tài
+      </Typography>
 
       {/* Thanh navbar phụ để chọn danh mục */}
-      <nav className="sub-navbar">
-        <button
-          className={`sub-navbar-item ${!selectedCategory ? 'active' : ''}`}
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3, justifyContent: 'center' }}>
+        <Button
+          variant={!selectedCategory ? 'contained' : 'outlined'}
+          color="primary"
           onClick={() => handleCategorySelect(null)}
         >
           Tất cả
-        </button>
+        </Button>
         {categories.map((category) => (
-          <button
+          <Button
             key={category}
-            className={`sub-navbar-item ${selectedCategory === category ? 'active' : ''}`}
+            variant={selectedCategory === category ? 'contained' : 'outlined'}
+            color="primary"
             onClick={() => handleCategorySelect(category)}
           >
             {category}
-          </button>
+          </Button>
         ))}
-      </nav>
+      </Box>
 
       {/* Container chính với danh sách và thanh lọc */}
-      <div className="weapon-list-content">
+      <Grid container spacing={3}>
         {/* Danh sách khí tài */}
-        <div className="weapon-list">
-          {currentItems.length > 0 ? (
-            currentItems.map((weapon) => (
-              <Card key={weapon.id} weapon={weapon} />
-            ))
-          ) : (
-            <p className="no-results">Không tìm thấy khí tài nào.</p>
-          )}
-        </div>
+        <Grid item xs={12} md={selectedCategory ? 9 : 12}>
+          <Grid container spacing={2}>
+            {currentItems.length > 0 ? (
+              currentItems.map((weapon) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={weapon.id}>
+                  <Card>
+                    {weapon.image && (
+                      <CardMedia
+                        component="img"
+                        height="140"
+                        image={weapon.image}
+                        alt={weapon.name}
+                      />
+                    )}
+                    <CardContent>
+                      <Typography variant="h6">{weapon.name}</Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {weapon.category}
+                      </Typography>
+                      {weapon.technicalDetails && (
+                        <Box sx={{ mt: 1 }}>
+                          {weapon.technicalDetails.weight && (
+                            <Typography variant="body2">
+                              Trọng lượng: {weapon.technicalDetails.weight}
+                            </Typography>
+                          )}
+                          {weapon.technicalDetails.speed && (
+                            <Typography variant="body2">
+                              Tốc độ: {weapon.technicalDetails.speed}
+                            </Typography>
+                          )}
+                          {weapon.technicalDetails.range && (
+                            <Typography variant="body2">
+                              Tầm bắn: {weapon.technicalDetails.range}
+                            </Typography>
+                          )}
+                        </Box>
+                      )}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))
+            ) : (
+              <Grid item xs={12}>
+                <Typography align="center">Không tìm thấy khí tài nào.</Typography>
+              </Grid>
+            )}
+          </Grid>
+        </Grid>
 
         {/* Thanh lọc bên phải (hiển thị khi chọn danh mục) */}
         {selectedCategory && (
-          <aside className="filter-sidebar">
-            <h3 className="filter-title">Lọc chi tiết</h3>
-            <div className="filter-options">
-              {/* Bộ lọc: Trọng lượng */}
-              <label className="filter-option">
-                Trọng lượng:
-                <select
-                  value={filters.weight || ''}
-                  onChange={(e) => handleFilterChange('weight', e.target.value)}
-                >
-                  <option value="">Tất cả</option>
-                  {uniqueWeights.map((weight) => (
-                    <option key={weight} value={weight}>
-                      {weight}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              {/* Bộ lọc: Tốc độ (cho Xe tăng và Máy bay) */}
-              {['Xe tăng', 'Máy bay chiến đấu'].includes(selectedCategory) && (
-                <label className="filter-option">
-                  Tốc độ:
-                  <select
-                    value={filters.speed || ''}
-                    onChange={(e) => handleFilterChange('speed', e.target.value)}
+          <Grid item xs={12} md={3}>
+            <Paper sx={{ padding: 2 }}>
+              <Typography variant="h6" gutterBottom>
+                Lọc chi tiết
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {/* Bộ lọc: Trọng lượng */}
+                <FormControl fullWidth>
+                  <InputLabel>Trọng lượng</InputLabel>
+                  <Select
+                    value={filters.weight || ''}
+                    onChange={(e) => handleFilterChange('weight', e.target.value)}
+                    label="Trọng lượng"
                   >
-                    <option value="">Tất cả</option>
-                    {uniqueSpeeds.map((speed) => (
-                      <option key={speed} value={speed}>
-                        {speed}
-                      </option>
+                    <MenuItem value="">Tất cả</MenuItem>
+                    {uniqueWeights.map((weight) => (
+                      <MenuItem key={weight} value={weight}>
+                        {weight}
+                      </MenuItem>
                     ))}
-                  </select>
-                </label>
-              )}
+                  </Select>
+                </FormControl>
 
-              {/* Bộ lọc: Tầm bắn (cho Tên lửa) */}
-              {selectedCategory === 'Tên lửa' && (
-                <label className="filter-option">
-                  Tầm bắn:
-                  <select
-                    value={filters.range || ''}
-                    onChange={(e) => handleFilterChange('range', e.target.value)}
-                  >
-                    <option value="">Tất cả</option>
-                    {uniqueRanges.map((range) => (
-                      <option key={range} value={range}>
-                        {range}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              )}
+                {/* Bộ lọc: Tốc độ (cho Xe tăng và Máy bay) */}
+                {['Xe tăng', 'Máy bay chiến đấu'].includes(selectedCategory) && (
+                  <FormControl fullWidth>
+                    <InputLabel>Tốc độ</InputLabel>
+                    <Select
+                      value={filters.speed || ''}
+                      onChange={(e) => handleFilterChange('speed', e.target.value)}
+                      label="Tốc độ"
+                    >
+                      <MenuItem value="">Tất cả</MenuItem>
+                      {uniqueSpeeds.map((speed) => (
+                        <MenuItem key={speed} value={speed}>
+                          {speed}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
 
-              {/* Nút reset bộ lọc */}
-              <Button text="Xóa bộ lọc" onClick={resetFilters} />
-            </div>
-          </aside>
+                {/* Bộ lọc: Tầm bắn (cho Tên lửa) */}
+                {selectedCategory === 'Tên lửa' && (
+                  <FormControl fullWidth>
+                    <InputLabel>Tầm bắn</InputLabel>
+                    <Select
+                      value={filters.range || ''}
+                      onChange={(e) => handleFilterChange('range', e.target.value)}
+                      label="Tầm bắn"
+                    >
+                      <MenuItem value="">Tất cả</MenuItem>
+                      {uniqueRanges.map((range) => (
+                        <MenuItem key={range} value={range}>
+                          {range}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
+
+                {/* Nút reset bộ lọc */}
+                <Button variant="outlined" color="secondary" onClick={resetFilters}>
+                  Xóa bộ lọc
+                </Button>
+              </Box>
+            </Paper>
+          </Grid>
         )}
-      </div>
+      </Grid>
 
       {/* Phân trang */}
       {totalPages > 1 && (
-        <div className="pagination">
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 3 }}>
           <Button
-            text="Trang trước"
+            variant="contained"
             onClick={prevPage}
             disabled={currentPage === 1}
-          />
-          <span className="pagination-info">
+          >
+            Trang trước
+          </Button>
+          <Typography variant="body1" sx={{ alignSelf: 'center' }}>
             Trang {currentPage} / {totalPages}
-          </span>
+          </Typography>
           <Button
-            text="Trang sau"
+            variant="contained"
             onClick={nextPage}
             disabled={currentPage === totalPages}
-          />
-        </div>
+          >
+            Trang sau
+          </Button>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

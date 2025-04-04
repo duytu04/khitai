@@ -1,7 +1,15 @@
 import React from 'react';
-import { useParams } from 'react-router-dom'; // Nhập useParams để lấy ID từ URL
-import { weapons } from '../data/weapons'; // Nhập danh sách khí tài từ /data/weapons.js
-import '../styles/WeaponDetailPage.css'; // Nhập CSS cho trang
+import { useParams } from 'react-router-dom';
+import { weapons } from '../data/weapons'; // Nhập danh sách khí tài
+import {
+  Box,
+  Typography,
+  CardMedia,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+} from '@mui/material';
 
 const WeaponDetailPage = () => {
   // Lấy ID từ URL
@@ -13,40 +21,99 @@ const WeaponDetailPage = () => {
   // Nếu không tìm thấy khí tài
   if (!weapon) {
     return (
-      <div className="weapon-detail-page">
-        <h1>Không tìm thấy khí tài</h1>
-      </div>
+      <Box sx={{ padding: 3, textAlign: 'center' }}>
+        <Typography variant="h4" color="error">
+          Không tìm thấy khí tài
+        </Typography>
+      </Box>
     );
   }
 
   return (
-    <div className="weapon-detail-page">
+    <Box sx={{ padding: 3 }}>
       {/* Tiêu đề khí tài */}
-      <h1 className="weapon-detail-title">{weapon.name}</h1>
+      <Typography variant="h4" component="h1" align="center" gutterBottom>
+        {weapon.name}
+      </Typography>
 
       {/* Container chính cho nội dung chi tiết */}
-      <div className="weapon-detail-content">
+      <Grid container spacing={3} sx={{ mt: 2 }}>
         {/* Hình ảnh khí tài */}
-        <img
-          src={weapon.image}
-          alt={weapon.name}
-          className="weapon-detail-image"
-        />
+        <Grid item xs={12} md={6}>
+          <CardMedia
+            component="img"
+            image={weapon.image}
+            alt={weapon.name}
+            sx={{
+              width: '100%',
+              maxHeight: 400,
+              objectFit: 'cover',
+              borderRadius: 2,
+            }}
+          />
+        </Grid>
 
         {/* Thông tin chi tiết */}
-        <div className="weapon-detail-info">
-          <h2>Thông tin kỹ thuật</h2>
-          <p><strong>Danh mục:</strong> {weapon.category}</p>
-          <p><strong>Mô tả:</strong> {weapon.description}</p>
-          <ul className="technical-details">
-            <li><strong>Trọng lượng:</strong> {weapon.technicalDetails.weight}</li>
-            <li><strong>Tốc độ/Tầm bắn:</strong> {weapon.technicalDetails.speed || weapon.technicalDetails.range}</li>
-            <li><strong>Vũ khí:</strong> {weapon.technicalDetails.armament || weapon.technicalDetails.warhead}</li>
-            <li><strong>Thủy thủ đoàn:</strong> {weapon.technicalDetails.crew}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+        <Grid item xs={12} md={6}>
+          <Box sx={{ bgcolor: '#f5f5f5', padding: 2, borderRadius: 2 }}>
+            <Typography variant="h5" gutterBottom>
+              Thông tin kỹ thuật
+            </Typography>
+            <List dense>
+              <ListItem>
+                <ListItemText
+                  primary={<Typography variant="body1"><strong>Danh mục:</strong> {weapon.category}</Typography>}
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={<Typography variant="body1"><strong>Mô tả:</strong> {weapon.description}</Typography>}
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={
+                    <Typography variant="body1">
+                      <strong>Trọng lượng:</strong> {weapon.technicalDetails.weight || 'Không có dữ liệu'}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={
+                    <Typography variant="body1">
+                      <strong>Tốc độ/Tầm bắn:</strong>{' '}
+                      {weapon.technicalDetails.speed || weapon.technicalDetails.range || 'Không có dữ liệu'}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={
+                    <Typography variant="body1">
+                      <strong>Vũ khí:</strong>{' '}
+                      {weapon.technicalDetails.armament || weapon.technicalDetails.warhead || 'Không có dữ liệu'}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={
+                    <Typography variant="body1">
+                      <strong>Thủy thủ đoàn:</strong>{' '}
+                      {weapon.technicalDetails.crew || 'Không có dữ liệu'}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+            </List>
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 

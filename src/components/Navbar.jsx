@@ -1,196 +1,386 @@
+// import React, { useRef, useState } from 'react';
+// import { NavLink } from 'react-router-dom';
+// import {
+//   AppBar,
+//   Toolbar,
+//   Box,
+//   Typography,
+//   Button,
+//   List,
+//   ListItem,
+//   ListItemText,
+//   Menu,
+//   MenuItem,
+// } from '@mui/material';
+// import logo from '../assets/images/Logo_QĐNDVN.png';
 
+// const Navbar = () => {
+//   const scrollContainerRef = useRef(null);
+//   const [isDragging, setIsDragging] = useState(false);
+//   const [startX, setStartX] = useState(0);
+//   const [scrollLeft, setScrollLeft] = useState(0);
+//   const [anchorEl, setAnchorEl] = useState(null); // State cho dropdown
+//   const [selectedCategory, setSelectedCategory] = useState(null); // Theo dõi danh mục được chọn
 
+//   // Bắt đầu kéo khi nhấn chuột hoặc chạm
+//   const handleDragStart = (e) => {
+//     const container = scrollContainerRef.current;
+//     if (!container) return;
 
-import React, { useRef, useState } from 'react';
+//     setIsDragging(true);
+//     container.style.cursor = 'grabbing'; // Đổi con trỏ khi kéo
+
+//     const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+//     setStartX(clientX);
+//     setScrollLeft(container.scrollLeft);
+//   };
+
+//   // Di chuyển khi kéo
+//   const handleDragMove = (e) => {
+//     if (!isDragging) return;
+//     e.preventDefault();
+
+//     const container = scrollContainerRef.current;
+//     if (!container) return;
+
+//     const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+//     const deltaX = clientX - startX;
+//     container.scrollLeft = scrollLeft - deltaX;
+//   };
+
+//   // Ngừng kéo khi nhả chuột hoặc thả tay
+//   const handleDragEnd = () => {
+//     setIsDragging(false);
+//     const container = scrollContainerRef.current;
+//     if (container) container.style.cursor = 'grab'; // Đổi lại con trỏ
+//   };
+
+//   // Mở dropdown khi nhấp hoặc hover
+//   const handleMenuOpen = (event, category) => {
+//     setAnchorEl(event.currentTarget);
+//     setSelectedCategory(category);
+//   };
+
+//   // Đóng dropdown
+//   const handleMenuClose = () => {
+//     setAnchorEl(null);
+//     setSelectedCategory(null);
+//   };
+
+//   // Danh sách danh mục khí tài
+//   const categories = [
+//     {
+//       name: 'Khí tài hải quân',
+//       path: '/weapons/naval',
+//       subItems: [
+//         { name: 'Tàu chiến', path: '/weapons/naval/ship' },
+//         { name: 'Tàu ngầm', path: '/weapons/naval/submarine' },
+//         { name: 'Vũ khí chống tàu', path: '/weapons/naval/missile' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài không quân',
+//       path: '/weapons/airforce',
+//       subItems: [
+//         { name: 'Máy bay chiến đấu', path: '/weapons/airforce/fighter' },
+//         { name: 'Máy bay vận tải', path: '/weapons/airforce/transport' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài mặt đất',
+//       path: '/weapons/ground',
+//       subItems: [
+//         { name: 'Xe tăng', path: '/weapons/ground/tank' },
+//         { name: 'Xe bọc thép', path: '/weapons/ground/vehicle' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài hóa học & sinh học',
+//       path: '/weapons/chemical',
+//       subItems: [
+//         { name: 'Vũ khí hóa học', path: '/weapons/chemical/chemical-weapons' },
+//         { name: 'Vũ khí sinh học', path: '/weapons/chemical/biological-weapons' },
+//         { name: 'Hệ thống phòng vệ hóa học và sinh học', path: '/weapons/chemical/defense-systems' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài chiến tranh điện tử',
+//       path: '/weapons/electronic',
+//       subItems: [
+//         { name: 'Hệ thống jamming', path: '/weapons/electronic/jamming' },
+//         { name: 'Radar tác chiến điện tử', path: '/weapons/electronic/radar' },
+//         { name: 'Phòng thủ tác chiến điện tử', path: '/weapons/electronic/defense' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài vũ khí hạt nhân',
+//       path: '/weapons/nuclear',
+//       subItems: [
+//         { name: 'Tên lửa đạn đạo liên lục địa (ICBM)', path: '/weapons/nuclear/icbm' },
+//         { name: 'Bom hạt nhân', path: '/weapons/nuclear/nuclear-bombs' },
+//         { name: 'Tên lửa mang đầu đạn hạt nhân', path: '/weapons/nuclear/nuclear-missiles' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài chiến tranh đặc biệt',
+//       path: '/weapons/special',
+//       subItems: [
+//         { name: 'Dụng cụ phá hoại', path: '/weapons/special/sabotage-tools' },
+//         { name: 'Vũ khí tàng hình', path: '/weapons/special/stealth-weapons' },
+//         { name: 'Khí tài thông tin', path: '/weapons/special/communications' },
+//         { name: 'Khí tài đặc nhiệm', path: '/weapons/special/special-ops' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài chiến tranh mạng',
+//       path: '/weapons/cyber',
+//       subItems: [
+//         { name: 'Hệ thống tấn công mạng', path: '/weapons/cyber/cyber-attacks' },
+//         { name: 'Phần mềm độc hại quân sự', path: '/weapons/cyber/malware' },
+//         { name: 'Phần mềm phòng thủ mạng', path: '/weapons/cyber/network-defense' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài quân sự cỡ nhỏ',
+//       path: '/weapons/small-arms',
+//       subItems: [
+//         { name: 'Súng bắn tỉa', path: '/weapons/small-arms/sniper-rifles' },
+//         { name: 'Súng trường', path: '/weapons/small-arms/rifles' },
+//         { name: 'Súng ngắn', path: '/weapons/small-arms/handguns' },
+//         { name: 'Súng máy hạng nhẹ', path: '/weapons/small-arms/light-machine-guns' },
+//         { name: 'Súng phóng lựu', path: '/weapons/small-arms/grenades' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài chống tăng',
+//       path: '/weapons/anti-tank',
+//       subItems: [
+//         { name: 'Tên lửa chống tăng', path: '/weapons/anti-tank/atgm' },
+//         { name: 'Lựu đạn chống tăng', path: '/weapons/anti-tank/grenades' },
+//         { name: 'Súng chống tăng', path: '/weapons/anti-tank/anti-tank-guns' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài không gian',
+//       path: '/weapons/space',
+//       subItems: [
+//         { name: 'Vệ tinh quân sự', path: '/weapons/space/satellites' },
+//         { name: 'Tên lửa phóng vệ tinh', path: '/weapons/space/space-missiles' },
+//         { name: 'Hệ thống radar không gian', path: '/weapons/space/space-radar' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài hỗ trợ chiến đấu',
+//       path: '/weapons/support',
+//       subItems: [
+//         { name: 'Dụng cụ trinh sát', path: '/weapons/support/surveillance' },
+//         { name: 'Xe cứu thương quân sự', path: '/weapons/support/ambulance' },
+//         { name: 'Khí tài cấp cứu chiến trường', path: '/weapons/support/emergency' },
+//         { name: 'Hệ thống cảnh báo sớm', path: '/weapons/support/early-warning' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài tác chiến đặc biệt',
+//       path: '/weapons/special-ops',
+//       subItems: [
+//         { name: 'Lựu đạn hơi cay', path: '/weapons/special-ops/tear-gas' },
+//         { name: 'Máy bắn đá', path: '/weapons/special-ops/stone-throwers' },
+//         { name: 'Khí tài đột kích vào căn cứ', path: '/weapons/special-ops/base-assault' },
+//       ],
+//     },
+//     {
+//       name: 'Khí tài đặc biệt không người lái',
+//       path: '/weapons/drones',
+//       subItems: [
+//         { name: 'Drone chiến đấu', path: '/weapons/drones/combat-drones' },
+//         { name: 'Drone vận tải', path: '/weapons/drones/transport-drones' },
+//         { name: 'Drone quan sát', path: '/weapons/drones/surveillance-drones' },
+//       ],
+//     },
+//   ];
+
+//   return (
+//     <Box>
+//       {/* Thanh navbar chính */}
+//       <AppBar position="sticky" sx={{ bgcolor: '#1a2b49' }}>
+//         <Toolbar>
+//           <Box sx={{ display: 'flex', alignItems: 'center' }}>
+//             <img
+//               src={logo}
+//               alt="Logo"
+//               style={{ height: '50px', transition: 'transform 0.3s ease' }}
+//               onMouseEnter={(e) => (e.target.style.transform = 'scale(1.1)')}
+//               onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')}
+//             />
+//           </Box>
+//           <Box sx={{ flexGrow: 1 }} />
+//           <List sx={{ display: 'flex', flexDirection: 'row' }}>
+//             {['Home', 'Weapons', 'News', 'About'].map((text) => (
+//               <ListItem key={text} sx={{ width: 'auto' }}>
+//                 {/* <NavLink
+//                   to={`/${text.toLowerCase()}`}
+//                   style={{ textDecoration: 'none', color: 'inherit' }}
+//                 > */}
+//                 <NavLink
+//   to={text === 'Home' ? '/' : `/${text.toLowerCase()}`}
+//   style={{ textDecoration: 'none', color: 'inherit' }}
+// >
+
+//                   <ListItemText
+//                     primary={text}
+//                     primaryTypographyProps={{
+//                       color: 'white',
+//                       fontWeight: 500,
+//                       fontSize: '1.1rem',
+//                       padding: '0.5rem 1rem',
+//                       borderRadius: '4px',
+//                       '&:hover': { bgcolor: '#ff9900' },
+//                     }}
+//                   />
+//                 </NavLink>
+//               </ListItem>
+//             ))}
+//           </List>
+//         </Toolbar>
+//       </AppBar>
+
+//       {/* Thanh trượt ngang danh mục khí tài */}
+//       <Box
+//         ref={scrollContainerRef}
+//         sx={{
+//           bgcolor: '#f4f4f4',
+//           padding: '1rem 0',
+//           overflowX: 'auto',
+//           overflowY: 'hidden',
+//           whiteSpace: 'nowrap',
+//           borderBottom: '1px solid #ddd',
+//           userSelect: 'none',
+//           cursor: 'grab',
+//           WebkitOverflowScrolling: 'touch',
+//           '&::-webkit-scrollbar': { height: '8px' },
+//           '&::-webkit-scrollbar-thumb': { bgcolor: '#ff9900', borderRadius: '4px' },
+//           '&::-webkit-scrollbar-track': { bgcolor: '#ddd' },
+//           '@media (max-width: 768px)': {
+//             '&::-webkit-scrollbar': { display: 'none' },
+//           },
+//         }}
+//         onMouseDown={handleDragStart}
+//         onMouseMove={handleDragMove}
+//         onMouseUp={handleDragEnd}
+//         onMouseLeave={handleDragEnd}
+//         onTouchStart={handleDragStart}
+//         onTouchMove={handleDragMove}
+//         onTouchEnd={handleDragEnd}
+//       >
+//         <List sx={{ display: 'inline-flex', padding: '0 1rem', alignItems: 'center' }}>
+//           {categories.map((category) => (
+//             <ListItem key={category.path} sx={{ position: 'relative', marginRight: '1.5rem' }}>
+//               <Button
+//                 onClick={(e) => handleMenuOpen(e, category.path)}
+//                 sx={{
+//                   color: '#333',
+//                   bgcolor: '#fff',
+//                   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+//                   borderRadius: '20px',
+//                   padding: '0.5rem 1rem',
+//                   textTransform: 'none',
+//                   '&:hover': { bgcolor: '#ff9900', color: '#fff' },
+//                 }}
+//               >
+//                 <NavLink
+//                   to={category.path}
+//                   style={{ textDecoration: 'none', color: 'inherit' }}
+//                 >
+//                   {category.name}
+//                 </NavLink>
+//               </Button>
+//               <Menu
+//                 anchorEl={anchorEl}
+//                 open={Boolean(anchorEl) && selectedCategory === category.path}
+//                 onClose={handleMenuClose}
+//                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+//                 transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+//                 sx={{ '& .MuiPaper-root': { borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.15)' } }}
+//               >
+//                 {category.subItems.map((subItem) => (
+//                   <MenuItem
+//                     key={subItem.path}
+//                     onClick={handleMenuClose}
+//                     sx={{
+//                       '&:hover': { bgcolor: '#f0f0f0', color: '#ff9900' },
+//                     }}
+//                   >
+//                     <NavLink
+//                       to={subItem.path}
+//                       style={{ textDecoration: 'none', color: 'inherit', width: '100%' }}
+//                     >
+//                       {subItem.name}
+//                     </NavLink>
+//                   </MenuItem>
+//                 ))}
+//               </Menu>
+//             </ListItem>
+//           ))}
+//         </List>
+//       </Box>
+//     </Box>
+//   );
+// };
+
+// export default Navbar;
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../styles/Navbar.css';
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+} from '@mui/material';
 import logo from '../assets/images/Logo_QĐNDVN.png';
 
 const Navbar = () => {
-  const scrollContainerRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-// Bắt đầu kéo khi nhấn chuột hoặc chạm
-const handleDragStart = (e) => {
-  const container = scrollContainerRef.current;
-  if (!container) return;
-
-  setIsDragging(true);
-  container.classList.add('dragging');
-
-  // Lấy vị trí X ban đầu (chuột hoặc cảm ứng)
-  const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-  setStartX(clientX);
-  setScrollLeft(container.scrollLeft);
-};
-
-// Di chuyển khi kéo (chỉ khi đang giữ chuột)
-const handleDragMove = (e) => {
-  if (!isDragging) return; // Chỉ hoạt động khi đang kéo
-  e.preventDefault(); // Ngăn chọn văn bản hoặc các hành vi mặc định khác
-
-  const container = scrollContainerRef.current;
-  if (!container) return;
-
-  // Tính toán khoảng cách di chuyển
-  const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-  const deltaX = clientX - startX;
-  container.scrollLeft = scrollLeft - deltaX; // Cập nhật vị trí cuộn
-};
-
-// Ngừng kéo khi nhả chuột hoặc thả tay
-const handleDragEnd = () => {
-  setIsDragging(false); // Dừng trạng thái kéo
-  const container = scrollContainerRef.current;
-  if (container) container.classList.remove('dragging');
-};
   return (
-    <div>
-      {/* Thanh navbar chính */}
-      <nav className="navbar">
-        <div className="navbar-logo">
-          <img src={logo} alt="Logo" className="logo" />
-        </div>
-        <ul className="navbar-menu">
-          <li className="navbar-item"><NavLink to="/">Home</NavLink></li>
-          <li className="navbar-item"><NavLink to="/weapons">Weapons</NavLink></li>
-          <li className="navbar-item"><NavLink to="/news">News</NavLink></li>
-          <li className="navbar-item"><NavLink to="/about">About</NavLink></li>
-        </ul>
-      </nav>
-
-      {/* Thanh trượt ngang danh mục khí tài */}
-      <div
-        className="horizontal-scroll-container"
-        ref={scrollContainerRef}
-        onMouseDown={handleDragStart} // Nhấn chuột để bắt đầu kéo
-        onMouseMove={handleDragMove} // Di chuyển chuột khi giữ
-        onMouseUp={handleDragEnd}    // Nhả chuột để dừng kéo
-        onMouseLeave={handleDragEnd} // Rời khỏi khu vực cũng dừng kéo
-        onTouchStart={handleDragStart} // Hỗ trợ cảm ứng trên mobile
-        onTouchMove={handleDragMove}
-        onTouchEnd={handleDragEnd}
-      >
-        <ul className="horizontal-scroll">
-          <li>
-            <NavLink to="/weapons/naval">Khí tài hải quân</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/naval/ship">Tàu chiến</NavLink></li>
-              <li><NavLink to="/weapons/naval/submarine">Tàu ngầm</NavLink></li>
-              <li><NavLink to="/weapons/naval/missile">Vũ khí chống tàu</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/airforce">Khí tài không quân</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/airforce/fighter">Máy bay chiến đấu</NavLink></li>
-              <li><NavLink to="/weapons/airforce/transport">Máy bay vận tải</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/ground">Khí tài mặt đất</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/ground/tank">Xe tăng</NavLink></li>
-              <li><NavLink to="/weapons/ground/vehicle">Xe bọc thép</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/chemical">Khí tài hóa học & sinh học</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/chemical/chemical-weapons">Vũ khí hóa học</NavLink></li>
-              <li><NavLink to="/weapons/chemical/biological-weapons">Vũ khí sinh học</NavLink></li>
-              <li><NavLink to="/weapons/chemical/defense-systems">Hệ thống phòng vệ hóa học và sinh học</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/electronic">Khí tài chiến tranh điện tử</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/electronic/jamming">Hệ thống jamming</NavLink></li>
-              <li><NavLink to="/weapons/electronic/radar">Radar tác chiến điện tử</NavLink></li>
-              <li><NavLink to="/weapons/electronic/defense">Phòng thủ tác chiến điện tử</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/nuclear">Khí tài vũ khí hạt nhân</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/nuclear/icbm">Tên lửa đạn đạo liên lục địa (ICBM)</NavLink></li>
-              <li><NavLink to="/weapons/nuclear/nuclear-bombs">Bom hạt nhân</NavLink></li>
-              <li><NavLink to="/weapons/nuclear/nuclear-missiles">Tên lửa mang đầu đạn hạt nhân</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/special">Khí tài chiến tranh đặc biệt</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/special/sabotage-tools">Dụng cụ phá hoại</NavLink></li>
-              <li><NavLink to="/weapons/special/stealth-weapons">Vũ khí tàng hình</NavLink></li>
-              <li><NavLink to="/weapons/special/communications">Khí tài thông tin</NavLink></li>
-              <li><NavLink to="/weapons/special/special-ops">Khí tài đặc nhiệm</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/cyber">Khí tài chiến tranh mạng</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/cyber/cyber-attacks">Hệ thống tấn công mạng</NavLink></li>
-              <li><NavLink to="/weapons/cyber/malware">Phần mềm độc hại quân sự</NavLink></li>
-              <li><NavLink to="/weapons/cyber/network-defense">Phần mềm phòng thủ mạng</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/small-arms">Khí tài quân sự cỡ nhỏ</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/small-arms/sniper-rifles">Súng bắn tỉa</NavLink></li>
-              <li><NavLink to="/weapons/small-arms/rifles">Súng trường</NavLink></li>
-              <li><NavLink to="/weapons/small-arms/handguns">Súng ngắn</NavLink></li>
-              <li><NavLink to="/weapons/small-arms/light-machine-guns">Súng máy hạng nhẹ</NavLink></li>
-              <li><NavLink to="/weapons/small-arms/grenades">Súng phóng lựu</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/anti-tank">Khí tài chống tăng</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/anti-tank/atgm">Tên lửa chống tăng</NavLink></li>
-              <li><NavLink to="/weapons/anti-tank/grenades">Lựu đạn chống tăng</NavLink></li>
-              <li><NavLink to="/weapons/anti-tank/anti-tank-guns">Súng chống tăng</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/space">Khí tài không gian</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/space/satellites">Vệ tinh quân sự</NavLink></li>
-              <li><NavLink to="/weapons/space/space-missiles">Tên lửa phóng vệ tinh</NavLink></li>
-              <li><NavLink to="/weapons/space/space-radar">Hệ thống radar không gian</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/support">Khí tài hỗ trợ chiến đấu</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/support/surveillance">Dụng cụ trinh sát</NavLink></li>
-              <li><NavLink to="/weapons/support/ambulance">Xe cứu thương quân sự</NavLink></li>
-              <li><NavLink to="/weapons/support/emergency">Khí tài cấp cứu chiến trường</NavLink></li>
-              <li><NavLink to="/weapons/support/early-warning">Hệ thống cảnh báo sớm</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/special-ops">Khí tài tác chiến đặc biệt</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/special-ops/tear-gas">Lựu đạn hơi cay</NavLink></li>
-              <li><NavLink to="/weapons/special-ops/stone-throwers">Máy bắn đá</NavLink></li>
-              <li><NavLink to="/weapons/special-ops/base-assault">Khí tài đột kích vào căn cứ</NavLink></li>
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/weapons/drones">Khí tài đặc biệt không người lái</NavLink>
-            <ul className="sub-dropdown">
-              <li><NavLink to="/weapons/drones/combat-drones">Drone chiến đấu</NavLink></li>
-              <li><NavLink to="/weapons/drones/transport-drones">Drone vận tải</NavLink></li>
-              <li><NavLink to="/weapons/drones/surveillance-drones">Drone quan sát</NavLink></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <Box>
+      <AppBar position="sticky" sx={{ bgcolor: '#1a2b49' }}>
+        <Toolbar>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <img
+              src={logo}
+              alt="Logo"
+              style={{ height: '50px', transition: 'transform 0.3s ease' }}
+              onMouseEnter={(e) => (e.target.style.transform = 'scale(1.1)')}
+              onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')}
+            />
+          </Box>
+          <Box sx={{ flexGrow: 1 }} />
+          <List sx={{ display: 'flex', flexDirection: 'row' }}>
+            {['Home', 'Weapons', 'News', 'About'].map((text) => (
+              <ListItem key={text} sx={{ width: 'auto' }}>
+                <NavLink
+                  to={text === 'Home' ? '/' : `/${text.toLowerCase()}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <ListItemText
+                    primary={text}
+                    primaryTypographyProps={{
+                      color: 'white',
+                      fontWeight: 500,
+                      fontSize: '1.1rem',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '4px',
+                      '&:hover': { bgcolor: '#ff9900' },
+                    }}
+                  />
+                </NavLink>
+              </ListItem>
+            ))}
+          </List>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 };
 
