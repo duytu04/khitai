@@ -11,6 +11,7 @@ const useFetchData = () => {
       try {
         // Giả lập lấy dữ liệu tĩnh
         setTimeout(() => {
+        
           setData(weapons); // Dùng dữ liệu từ weapons.js
           setLoading(false);
         }, 1000); // Giả lập độ trễ 1 giây
