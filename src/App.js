@@ -21,6 +21,9 @@ const App = () => {
     <Router>
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: '#f5f5f5' }}>
         <Routes>
+           {/* Trang login không dùng Layout */}
+  <Route path="/login" element={<Login />} />
+  <Route path="/request-account" element={<RequestAccount />} />
           {/* Layout bọc các trang con */}
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />

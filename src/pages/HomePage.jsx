@@ -410,15 +410,15 @@ const HomePage = () => {
   // Danh sách ảnh giới thiệu trong Hero Section
   const heroImages = [
     {
-      src: 'https://via.placeholder.com/1200x400?text=F-22+Raptor',
+      src: 'https://photo2.tinhte.vn/data/attachment-files/2023/02/6322962_cover_f22raptor.jpg',
       alt: 'Máy bay F-22 Raptor',
     },
     {
-      src: 'https://via.placeholder.com/1200x400?text=Aircraft+Carrier',
+      src: 'https://file3.qdnd.vn/data/images/0/2021/01/02/nguyenthao/us%20navy.jpg',
       alt: 'Tàu sân bay hiện đại',
     },
     {
-      src: 'https://via.placeholder.com/1200x400?text=T-90+Tank',
+      src: 'https://media.vov.vn/sites/default/files/styles/large/public/2022-08/tt90m3-10135934.jpg',
       alt: 'Xe tăng T-90',
     },
   ];
@@ -427,7 +427,7 @@ const HomePage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-    }, 5000); // Chuyển ảnh sau 5 giây
+    }, 3000); // Chuyển ảnh sau 5 giây
     return () => clearInterval(interval); // Cleanup khi component unmount
   }, [heroImages.length]);
 
@@ -435,7 +435,7 @@ const HomePage = () => {
     {
       title: 'Máy Bay Chiến Đấu',
       description: 'F-22 Raptor (Mỹ), Su-57 (Nga), Eurofighter Typhoon (EU).',
-      image: 'https://via.placeholder.com/300x200?text=F-22+Raptor',
+      image: 'https://photo2.tinhte.vn/data/attachment-files/2023/02/6322962_cover_f22raptor.jpg',
     },
     {
       title: 'Xe Tăng',
