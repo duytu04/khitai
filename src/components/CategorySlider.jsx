@@ -280,3 +280,5 @@ const CategorySlider = () => {
 };
 
 export default CategorySlider;
+
+
