@@ -136,3 +136,93 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
   ├── App.jsx                   # Thành phần chính
   ├── index.js                  # Điểm vào ứng dụng
   └── index.css                 # CSS toàn cục
+
+
+
+
+
+
+
+
+
+
+
+  cấu trúc tích hợp user và admin 
+  Ký hiệu chú thích rõ vai trò:
+  Ký hiệu	Ý nghĩa
+👤	Dành riêng cho người dùng (User)
+🔒	Dành riêng cho quản trị viên (Admin)
+🟰	Dùng chung cho cả hai
+  
+  
+/src
+├── /assets                     # 🟰 Dùng chung cho cả User + Admin
+│   ├── /images                 # Hình ảnh (logo, khí tài…)
+│   ├── /icons                  # Icon SVG dùng chung
+│   └── /fonts                  # Font chữ dùng chung
+
+├── /components
+│   ├── /common                # 🟰 Component dùng chung (Button, Modal, Loading...)
+│   ├── /admin                 # 🔒 Component dành riêng cho Admin (Form, Navbar Admin...)
+│   └── /frontend              # 👤 Component dành riêng cho User (Card, Navbar, Footer...)
+
+├── /layouts
+│   ├── AdminLayout.jsx        # 🔒 Layout chứa menu, header cho Admin
+│   └── MainLayout.jsx         # 👤 Layout chứa header, footer cho người dùng (User)
+
+├── /pages
+│   ├── /admin                 # 🔒 Các trang dành riêng cho Admin
+│   │   ├── DashboardPage.jsx
+│   │   ├── ManageWeaponsPage.jsx
+│   │   ├── ManageCategoriesPage.jsx
+│   │   ├── ManageNewsPage.jsx
+│   │   └── LoginPage.jsx
+│   └── /frontend              # 👤 Các trang hiển thị cho người dùng
+│       ├── HomePage.jsx
+│       ├── WeaponListPage.jsx
+│       ├── WeaponDetailPage.jsx
+│       ├── NewsPage.jsx
+│       └── NotFoundPage.jsx
+
+├── /routes
+│   ├── AdminRoutes.jsx        # 🔒 Định nghĩa các route dành cho admin (bảo vệ bằng auth)
+│   ├── PublicRoutes.jsx       # 👤 Các route public cho user (home, danh sách…)
+│   └── RequireAuth.jsx        # 🔒 HOC kiểm tra quyền trước khi vào admin
+
+├── /data                      # 🟰 Dữ liệu giả lập, dùng chung
+│   ├── weapons.js
+│   ├── categories.js
+│   └── news.js
+
+├── /hooks                     # 🟰 Custom Hook dùng chung
+│   ├── useFetchData.js
+│   ├── useSearch.js
+│   ├── useWindowSize.js
+│   └── useAuth.js             # 🔒 Kiểm tra đăng nhập admin
+
+├── /services
+│   ├── api.js                 # 🟰 Cấu hình chung (axios instance)
+│   ├── weaponService.js       # 🟰 Gọi API khí tài (User + Admin)
+│   ├── categoryService.js     # 🟰 Gọi API danh mục (User + Admin)
+│   ├── newsService.js         # 🟰 Gọi API tin tức (User + Admin)
+│   └── authService.js         # 🔒 Gọi API đăng nhập / xác thực admin
+
+├── /utils
+│   ├── formatDate.js          # 🟰 Format ngày tháng (hiển thị user/admin)
+│   ├── filterWeapons.js       # 👤 Lọc khí tài theo điều kiện (frontend)
+│   ├── slugify.js             # 👤 Tạo slug URL từ tên
+│   └── restrictAccess.js      # 🔒 Chặn truy cập admin nếu chưa đăng nhập
+
+├── /constants
+│   ├── messages.js            # 🟰 Thông điệp thông báo (toast, lỗi)
+│   └── routes.js              # 🟰 Định nghĩa tên route thống nhất
+
+├── /styles
+│   ├── /common                # 🟰 CSS cho component dùng chung
+│   ├── /admin                 # 🔒 CSS riêng cho phần admin
+│   ├── /frontend              # 👤 CSS riêng cho phần user
+│   └── App.css                # 🟰 CSS tổng thể
+
+├── App.jsx                    # 🟰 Gắn toàn bộ các route user + admin
+├── index.js                   # 🟰 Điểm khởi động ứng dụng React
+└── index.css                  # 🟰 CSS toàn cục
