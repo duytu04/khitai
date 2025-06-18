@@ -2,6 +2,7 @@
 
 
 
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -17,7 +18,7 @@ import {
   Tooltip,
   IconButton,
 } from '@mui/material';
-import { Circle } from '@mui/icons-material';
+import { Circle, ArrowUpward } from '@mui/icons-material'; // Thêm ArrowUpward
 import { styled } from '@mui/material/styles';
 import Chart from 'chart.js/auto';
 
@@ -111,10 +112,32 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
   },
 }));
 
+// Nút Scroll to Top
+const ScrollTopButton = styled(IconButton)(({ theme }) => ({
+  position: 'fixed',
+  bottom: '20px',
+  right: '20px',
+  backgroundColor: '#2E7D32',
+  color: '#FFFFFF',
+  boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+  transition: 'all 0.3s ease, opacity 0.3s ease',
+  opacity: 0.8,
+  '&:hover': {
+    backgroundColor: '#4CAF50',
+    opacity: 1,
+    transform: 'translateY(-2px)',
+  },
+  '&:focus': {
+    outline: '2px solid #4CAF50',
+    outlineOffset: 2,
+  },
+}));
+
 const HomePage = () => {
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
 
@@ -176,6 +199,16 @@ const HomePage = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [featuredNews.length]);
+
+  // Theo dõi cuộn để hiển thị nút Scroll to Top
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Khởi tạo biểu đồ
   useEffect(() => {
@@ -256,6 +289,22 @@ const HomePage = () => {
   const handleNewsKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       navigate('/news');
+    }
+  };
+
+  // Xử lý cuộn lên đầu trang
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  // Xử lý điều hướng bàn phím cho nút Scroll to Top
+  const handleScrollTopKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleScrollToTop();
     }
   };
 
@@ -513,6 +562,20 @@ const HomePage = () => {
             So Sánh Ngay
           </MilitaryButton>
         </Box>
+
+        {/* Nút Scroll to Top */}
+        {showScrollTop && (
+          <Tooltip title="Quay về đầu trang" arrow>
+            <ScrollTopButton
+              onClick={handleScrollToTop}
+              onKeyDown={handleScrollTopKeyDown}
+              tabIndex={0}
+              aria-label="Quay về đầu trang"
+            >
+              <ArrowUpward />
+            </ScrollTopButton>
+          </Tooltip>
+        )}
       </Container>
 
       {/* CSS Animation */}
@@ -536,3 +599,5 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
