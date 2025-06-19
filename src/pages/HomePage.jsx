@@ -3,6 +3,7 @@
 
 
 
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -18,7 +19,7 @@ import {
   Tooltip,
   IconButton,
 } from '@mui/material';
-import { Circle, ArrowUpward } from '@mui/icons-material'; // Thêm ArrowUpward
+import { Circle, ArrowUpward } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import Chart from 'chart.js/auto';
 
@@ -112,7 +113,6 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
   },
 }));
 
-// Nút Scroll to Top
 const ScrollTopButton = styled(IconButton)(({ theme }) => ({
   position: 'fixed',
   bottom: '20px',
@@ -223,13 +223,38 @@ const HomePage = () => {
       chartInstanceRef.current = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['Mỹ', 'Trung Quốc', 'Thổ Nhĩ Kỳ', 'Mỹ', 'Trung Quốc', 'Thổ Nhĩ Kỳ'],
+          labels: [
+            'MQ-9 Reaper',
+            'Bayraktar TB2',
+            'Wing Loong II',
+            'Global Hawk',
+            'CH-5 Rainbow',
+            'Heron TP',
+            'Akinci',
+            'Predator C',
+            'Hermes 900',
+            'TB-001',
+          ],
           datasets: [
             {
-              label: 'Số lượng UAV chiến đấu (ước tính 2024)',
-              data: [1200, 800, 300, 1200, 800, 300],
-              backgroundColor: ['#4CAF50', '#F44336', '#2196F3', '#4CAF50', '#F44336', '#2196F3'],
-              borderColor: ['#388E3C', '#D32F2F', '#1976D2', '#388E3C', '#D32F2F', '#1976D2'],
+              label: 'Trinh sát',
+              data: [90, 80, 75, 95, 70, 85, 80, 75, 80, 70],
+              backgroundColor: '#4CAF50',
+              borderColor: '#388E3C',
+              borderWidth: 1,
+            },
+            {
+              label: 'Tấn công',
+              data: [85, 75, 70, 20, 65, 50, 80, 85, 40, 60],
+              backgroundColor: '#F44336',
+              borderColor: '#D32F2F',
+              borderWidth: 1,
+            },
+            {
+              label: 'Tàng hình',
+              data: [50, 30, 40, 60, 35, 45, 55, 70, 50, 45],
+              backgroundColor: '#2196F3',
+              borderColor: '#1976D2',
               borderWidth: 1,
             },
           ],
@@ -238,13 +263,25 @@ const HomePage = () => {
           responsive: true,
           maintainAspectRatio: false,
           scales: {
-            y: {
-              beginAtZero: true,
-              title: { display: true, text: 'Số lượng UAV' },
+            x: {
+              stacked: true,
+              title: { display: true, text: 'UAV' },
+              ticks: { autoSkip: false, maxRotation: 45, minRotation: 45 },
             },
-            x: { title: { display: true, text: 'Quốc gia' } },
+            y: {
+              stacked: false,
+              beginAtZero: true,
+              title: { display: true, text: 'Điểm (0-100)' },
+            },
           },
-          plugins: { legend: { display: true, position: 'top' } },
+          plugins: {
+            legend: { display: true, position: 'top' },
+            tooltip: {
+              callbacks: {
+                label: (context) => `${context.dataset.label}: ${context.raw}`,
+              },
+            },
+          },
         },
       });
     }
@@ -545,13 +582,13 @@ const HomePage = () => {
               animation: 'slideUp 1s ease-in-out',
             }}
           >
-            So sánh các UAV hàng đầu như MQ-9 Reaper, Bayraktar TB2, và Wing Loong II về khả năng trinh sát, tấn công, và công nghệ tàng hình.
+            So sánh top 10 UAV hàng đầu trên thế giới về khả năng trinh sát, tấn công, và công nghệ tàng hình.
           </Typography>
-          <Box sx={{ maxWidth: '600px', mx: 'auto', mb: 4, height: '250px' }}>
+          <Box sx={{ maxWidth: { xs: '100%', sm: '800px', md: '1000px' }, mx: 'auto', mb: 4, height: { xs: '300px', md: '350px' } }}>
             <canvas
               id="comparisonChart"
               ref={chartRef}
-              aria-label="Biểu đồ so sánh số lượng UAV chiến đấu của Mỹ, Trung Quốc và Thổ Nhĩ Kỳ"
+              aria-label="Biểu đồ so sánh top 10 UAV hàng đầu về trinh sát, tấn công và tàng hình"
             />
           </Box>
           <MilitaryButton
@@ -599,5 +636,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-
