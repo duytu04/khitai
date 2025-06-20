@@ -1,0 +1,9 @@
+/* /src/styles/AboutPage.css */
+.cta-button {
+  background-color: #fff;
+  color: #1e3a8a;
+}
+
+.cta-button:hover {
+  background-color: #e5e7eb;
+}
