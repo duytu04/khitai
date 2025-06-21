@@ -136,7 +136,7 @@ const Navbar = () => {
 
           {/* Navigation Links (Desktop) */}
           <List sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: 1 }}>
-            {['Home', 'Weapons', 'News', 'About'].map((text) => (
+            {['Home', 'Weapons', 'News','Ballistics', 'About'].map((text) => (
               <ListItem key={text} sx={{ width: 'auto', p: 0 }}>
                 <StyledNavLink
                   to={text === 'Home' ? '/' : `/${text.toLowerCase()}`}
@@ -238,7 +238,7 @@ const Navbar = () => {
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           >
-            {['Home', 'Weapons', 'News', 'About'].map((text) => (
+            {['Home', 'Weapons', 'News','Ballistics', 'About'].map((text) => (
               <MenuItem
                 key={text}
                 onClick={() => {
