@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 
 import HomePage from './pages/HomePage';
 import WeaponListPage from './pages/WeaponListPage';
-import WeaponDetailPage from './pages/WeaponDetailPage';
+import WeaponListNaval from './pages/naval/WeaponListNaval';
 import NewsPage from './pages/NewsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Layout from './components/Layout';
@@ -20,6 +20,7 @@ import Settings from './pages/SettingsPage';
 import Modal from './components/Modal';
 
 
+
 const App = () => {
   return (
     <Router>
@@ -32,7 +33,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="weapons" element={<WeaponListPage />} />
-            <Route path="weapons/:id" element={<WeaponDetailPage />} />
+           <Route path="weapons/naval" element={<WeaponListNaval />} />
             <Route path="news" element={<NewsPage />} />
             <Route path="ballistics" element={<Ballistics />} />
             <Route path="about" element={<About />} />

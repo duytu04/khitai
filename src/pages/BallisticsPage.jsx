@@ -163,7 +163,7 @@ const BallisticsPage = () => {
           textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
         }}
       >
-        So sánh đạn đạo khí tài
+        So sánh các loại khí tài
       </Typography>
 
       {/* Bộ lọc chọn khí tài */}
