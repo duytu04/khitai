@@ -18,6 +18,8 @@ import RequestAccount from './pages/RequestAccount';
 import User from './pages/User';
 import Settings from './pages/SettingsPage';
 import Modal from './components/Modal';
+import NavalAssetDetail from './pages/naval/NavalAssetDetail';
+
 
 
 
@@ -39,7 +41,9 @@ const App = () => {
             <Route path="about" element={<About />} />
             <Route path="compare" element={<Compare />} />
             <Route path="settings" element={<Settings />} />
-      
+   
+          <Route path="/naval/:id" element={<NavalAssetDetail />} />
+
             {/* Thêm route cho các trang con */}
             <Route path="user" element={<User />} />
             <Route path="*" element={<NotFoundPage />} />
